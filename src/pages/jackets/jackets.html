@@ -1,0 +1,61 @@
+<!--
+  Generated template for the JacketsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Jackets</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <button ion-button block outline [ngClass]="{'active': activeState === '1'}" (click)="changeActive('1')">Sale</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button block outline [ngClass]="{'active': activeState === '2'}" (click)="changeActive('2')">Upcoming</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div *ngIf="activeState == '1'">
+    <ion-row>
+      <ion-col *ngFor="let s of sales">
+          <ion-card>
+              <img [src]="s.imgUrl" *ngIf="s.imgUrl"/>
+              <ion-card-content>
+                <ion-card-title>
+                    {{ s.title }}
+                  </ion-card-title>
+                <p>
+                    {{ s.price | currency:'USD':symbol }}
+                </p>
+              </ion-card-content>
+            </ion-card>
+      </ion-col>
+    </ion-row>
+  </div>
+  <div *ngIf="activeState == '2'">
+    <ion-row>
+      <ion-col *ngFor="let u of upcoming">
+          <ion-card>
+              <img [src]="u.imgUrl" *ngIf="u.imgUrl"/>
+              <ion-card-content>
+                <ion-card-title>
+                    {{ u.title }}
+                  </ion-card-title>
+                <p>
+                    {{ u.price | currency:'USD':symbol }}
+                </p>
+              </ion-card-content>
+            </ion-card>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>
